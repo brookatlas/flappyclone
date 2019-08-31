@@ -1,0 +1,18 @@
+canvas {
+    position: absolute;
+}
+
+@media (orientation: landscape) {
+    canvas
+    {
+
+    }
+}
+
+@media (orientation: portrait)
+{
+    canvas
+    {
+        
+    }
+}

@@ -2,9 +2,9 @@ class flappyCharacter
 {
     constructor()
     {
-        this.posX = 300;
+        this.posX = 100;
         this.posY = window.innerHeight / 2  ;
-        this.radius = 60;
+        this.radius = 40;
         this.speedX = 0;
         this.speedY = 0;
         this.drawInstance = null;
@@ -17,10 +17,26 @@ class flappyCharacter
     jump()
     {
         console.log("char jump");
-        this.speedY = -8;
+        if(IsLandscape())
+        {
+            this.speedY = -6;
+        }
+        else
+        {
+            this.speedY = -8;
+        }
     }
     draw()
     {
+        if(IsLandscape())
+        {
+            this.radius = 25;
+            this.maxSpeedY = 4;
+        }
+        else
+        {
+            this.radius = 40;
+        }
         this.drawInstance = new circle(this.posX, this.posY, this.radius);
         let bBox = this.getCharacterBoundingBoxRect();
         //this.boundingBox = new rectangle(bBox[0], bBox[1], bBox[2], bBox[3]);

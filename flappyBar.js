@@ -9,7 +9,7 @@ class flappyBar
         this.posX = window.innerWidth;
         this.posY = window.innerHeight - this.height;
         this.speed = 0
-        this.maxSpeed = 5;
+        this.maxSpeed = 3;
     }
 
     update()
@@ -25,7 +25,12 @@ class flappyBar
     draw()
     {
         this.downBar = new rectangle(this.posX, this.posY, this.width, this.height);
-        this.upBar = new rectangle(this.posX, 0, this.width, ((window.innerHeight - this.height) - this.HeightUnit * 250));
+        let space = 290;
+        if(IsLandscape())
+        {
+            space = 350;
+        }
+        this.upBar = new rectangle(this.posX, 0, this.width, ((window.innerHeight - this.height) - this.HeightUnit * space));
     }
 
 

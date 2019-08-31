@@ -5,7 +5,7 @@ let app = null;
 let bars = null;
 let gameCharacter = null;
 let hits = null;
-
+let portrait = false;
 function mainApp()
 {
 
@@ -25,12 +25,34 @@ function mainApp()
     resizeCanvas();
 }
 
+function IsLandscape()
+{
+    if(window.innerHeight > window.innerWidth)
+    {
+        return false;
+    }
+    return true;
+}
 
 function resizeCanvas()
 {
     window.addEventListener("resize", function(){
-        app.renderer.resize(window.innerWidth * 0.98, window.innerHeight * 0.98);
+        updateCanvasSize();    
     });
+}
+
+
+function updateCanvasSize()
+{
+    portrait = !IsLandscape();
+    if(portrait)
+    {
+        app.renderer.resize(window.innerWidth * 0.98, window.innerHeight * 0.98);
+    }
+    else
+    {
+        app.renderer.resize(window.innerWidth * 0.98, window.innerHeight * 0.98);
+    }
 }
 
 
@@ -39,6 +61,16 @@ function assignKeyActions()
     document.onkeypress = function(e)
     {
             gameCharacter.jump();
+    }
+
+    document.onmousedown = function(e)
+    {
+        gameCharacter.jump();
+    }
+    
+    document.ontouchstart = function(e)
+    {
+        gameCharacter.jump();
     }
 }
 
@@ -73,8 +105,10 @@ function mainloop()
 
 function initPixieApp()
 {
+    width = window.innerWidth * 0.98;
+    height = window.innerHeight * 0.98;
     var app = new PIXI.Application({
-        width: innerWidth * 0.98, height: innerHeight * 0.98
+        width: width, height: height
     });
     document.body.appendChild(app.view);
     return app;
